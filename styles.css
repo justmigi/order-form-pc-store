@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+.special-font{
+    font-family: "Monoton";
+}
+
+.img{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(img/cyber.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.img:hover{
+    background-size: 200%;
+}
+
+.order-form{
+    background-color:#ffd89f;
+    width: 90%;
+    max-width: 800px;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 auto;
+    box-shadow: 10px 10px 5px rgb(165, 160, 160);
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.field{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.underline-input{
+    background-color: #ffd89f;
+    border-bottom: 1px solid #000;
+    flex: 1;
+    min-width: 100px;
+    margin-left: 10px;
+    font-size: 16px;
+    justify-items: stretch;
+}
+
+th, td{
+    padding: 8px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+select{
+    width: 100%;
+    padding: 6px;
+    background-color: #34d399;
+}
+
+.grid-container{
+    max-width: 800px;
+    max-height: auto;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.grid-container > div{
+    text-align: start;
+}
+
+input:-moz-autofill{
+    background-color: #ffd89f !important;
+    color: #000000 !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus{
+    -webkit-text-fill-color: #000000;
+    -webkit-box-shadow: 0 0 0px 1000px #ffd89f inset;
+    box-shadow: 0 0 0px 1000px #ffd89f inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+

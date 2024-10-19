@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full m-0 p-0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Order Form</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-full m-0 p-0">
+
+    <div class="img"> <!--Image goes here as cover-->
+        <div class="order-form"> <!--order form doc. starts here-->
+
+            <!--1st section-->
+            <div class="m-2.5"> 
+                <div class="header flex flex-col md:flex-row justify-between items-center">
+                    <span class="special-font text-2xl md:text-4xl">Order Form</span>                      
+                    <span class="special-font text-xl">PC ⧉ Store</span>
+                </div>
+            </div>
+
+            <!--TO DO: 2nd section, here maybe I set the order date as today and promise date as max 5 days after the order date-->
+            <form action="/public/index.html" method="post">
+                <div class="m-2.5 uppercase">
+                    <div class="header flex flex-col md:flex-row justify-between items-center">
+                        <div class="field">
+                            <label for="order-date">Order date</label>
+                            <input type="date" id="order-date" name="order-date" class="underline-input" required>
+                        </div>
+                        <div class="field">
+                            <label for="promise-date">Promise date</label>
+                            <input type="date" id="promise-date" name="promise-date" class="underline-input" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <!--3rd section-->
+                <div class="m-2.5 border border-black p-2 uppercase"> 
+                    <div class="field">
+                        <label for="customer">Customer</label>
+                        <input type="text" id="customer" name="customer" class="underline-input" required>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="underline-input" required>
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" class="underline-input" required>
+                    </div>
+                    <div class="field">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" class="underline-input" required>
+                    </div>
+                </div>
+
+                <!--4th section, table goes here-->
+                <div class="m-2.5">
+
+                    <table class="table table-auto p-2 w-full border-collapse bg-emerald-400">
+                        <thead class="uppercase">
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total Price</th>
+                        </tr>
+                        </thead>
+                        <tbody id="item-table-body">
+                            <!--empty rows with dropdown menus-->
+                            <tr>
+                                <td>
+                                    <select onchange="updateRow(this)">
+                                        <option value="">Select Item</option>
+                                    </select>
+                                </td>
+                                <td class="description"></td>
+                                <td class="qty"></td>
+                                <td class="unit-price"></td>
+                                <td class="total-price"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select onchange="updateRow(this)">
+                                        <option value="">Select Item</option>
+                                    </select>
+                                </td>
+                                <td class="description"></td>
+                                <td class="qty"></td>
+                                <td class="unit-price"></td>
+                                <td class="total-price"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select onchange="updateRow(this)">
+                                        <option value="">Select Item</option>
+                                    </select>
+                                </td>
+                                <td class="description"></td>
+                                <td class="qty"></td>
+                                <td class="unit-price"></td>
+                                <td class="total-price"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <!--5th section-->
+                <div class="m-2.5 grid-container justify-items-stretch pl-2 pr-2">
+                    <div class="border border-black p-2">
+                        <h4 class="uppercase p-4 flex justify-center">Delivery</h4>
+                            <div class="pl-4">
+                                <div class="pb-2">
+                                    <input type="radio" id="drop-off" name="delivery">
+                                    <label for="drop-off">Drop Off</label>
+                                </div>
+                                <div class="pb-2">
+                                    <input type="radio" id="pick-up" name="delivery">
+                                    <label for="pick-up">Pick Up</label>
+                                </div>
+                                <div class="pb-2">
+                                    <input type="radio" id="ship" name="delivery">
+                                    <label for="ship">Shipping</label>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="border border-black p-2">
+                        <h4 class="uppercase p-4 flex justify-center">Payment</h4>
+                            <div class="pl-4">
+                                <div class="pb-2">
+                                    <input type="radio" id="cash" name="payment">
+                                    <label for="cash">Cash</label>
+                                </div>
+                                <div class="pb-2">
+                                    <input type="radio" id="card" name="payment">
+                                    <label for="card">Card</label>
+                                </div>
+                                <div class="pb-2">
+                                    <input type="radio" id="check" name="payment">
+                                    <label for="check">Check</label>
+                                </div>
+                                <div class="pb-2">
+                                    <input type="radio" id="other" name="payment">
+                                    <label for="other">Other</label>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="border border-black p-2">
+                        <h4 class="uppercase p-4 flex justify-center">Amount</h4>
+                            <div class="field">
+                                <label for="subtotal">Subtotal</label>
+                                <input type="text" id="subtotal" name="subtotal" class="underline-input" readonly>
+                            </div>
+                            <div class="field">
+                                <label for="taxes">Taxes</label>
+                                <input type="text" id="taxes" name="taxes" class="underline-input" readonly>
+                            </div>
+                            <div class="field">
+                                <label for="shipping">Shipping</label>
+                                <input type="text" id="shipping" name="shipping" class="underline-input" readonly>
+                            </div>
+                            <div class="field">
+                                <label for="grand-total">Grand Total</label>
+                                <input type="text" id="grand-total" name="grand-total" class="underline-input" readonly>
+                            </div>
+                    </div>
+                </div>
+                <!--TO DO: 6th section, to see if I can implement a pop-up message after the Submit Button is clicked e.g Ordered successfully! We have sent your tracking details at email.-->
+                <div class="m-2.5"> 
+                    <button type="submit" class="border border-black p-2 w-full bg-emerald-400 hover:bg-emerald-600">Submit Order</button>
+                </div>
+                <div class="m-2.5 text-center p-2">
+                    <span class="special-font text-xl md:text-3xl">Thank You!</span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    
+
+    <script>
+        var items = [
+            {"itemNo": "CPU", "description": "Intel Core i9-13900K Processor", "unitPrice": 449.99},
+            {"itemNo": "Motherboard", "description": "ASUS ROG Maximus Z790 Hero", "unitPrice": 179.99},
+            {"itemNo": "Graphics Card", "description": "NVIDIA GeForce RTX 4090", "unitPrice": 994.99},
+        ];
+    
+        //Populating the dropdown options
+        var selects = document.querySelectorAll('select');
+        selects.forEach(function(select) {
+            items.forEach(function(item, index) {
+                var option = document.createElement('option');
+                option.value = index;
+                option.text = item.itemNo;
+                select.add(option);
+            });
+        });
+    
+        //Updating row when an item is selected
+        function updateRow(selectElement) {
+            var selectedIndex = selectElement.value;
+            var row = selectElement.closest('tr');
+            if (selectedIndex !== "") {
+                var itemData = items[selectedIndex];
+                row.querySelector('.description').textContent = itemData.description;
+    
+                var qtyCell = row.querySelector('.qty');
+                qtyCell.textContent = '';
+                var qtySelect = document.createElement('select');
+                qtySelect.onchange = function() {
+                    updateTotalPrice(row, itemData.unitPrice, qtySelect.value);
+                };
+
+                for (var i = 1; i <= 5; i++) {
+                    var qtyOption = document.createElement('option');
+                    qtyOption.value = i;
+                    qtyOption.text = i;
+                    qtySelect.add(qtyOption);
+                }
+                qtyCell.appendChild(qtySelect);
+    
+                qtySelect.value = 1;
+    
+                row.querySelector('.unit-price').textContent = itemData.unitPrice.toFixed(2) + ' €';
+    
+                //calculating initial total price
+                var totalPrice = qtySelect.value * itemData.unitPrice;
+                row.querySelector('.total-price').textContent = totalPrice.toFixed(2) + ' €';
+    
+                calculateTotals();
+            } else {
+                row.querySelector('.description').textContent = '';
+                row.querySelector('.qty').textContent = '';
+                row.querySelector('.unit-price').textContent = '';
+                row.querySelector('.total-price').textContent = '';
+    
+                calculateTotals();
+            }
+        }
+    
+        //Updating total price when quantity changes
+        function updateTotalPrice(row, unitPrice, qty) {
+            var totalPrice = unitPrice * qty;
+            row.querySelector('.total-price').textContent = totalPrice.toFixed(2) + ' €';
+
+            calculateTotals();
+        }
+    
+        //Calculating subtotal, taxes, shipping, and grand total
+        function calculateTotals() {
+            var totalPriceCells = document.querySelectorAll('.total-price');
+            var subtotal = 0;
+    
+            totalPriceCells.forEach(function(cell) {
+                var priceText = cell.textContent;
+                var price = parseFloat(priceText.replace(' €', ''));
+                if (!isNaN(price)) {
+                    subtotal += price;
+                }
+            });
+    
+            //Updating the Subtotal field
+            document.getElementById('subtotal').value = subtotal.toFixed(2) + ' €';
+    
+            //Calculatig Taxes
+            var taxes = subtotal * 0.20;
+            document.getElementById('taxes').value = taxes.toFixed(2) + ' €';
+    
+            //Getting Shipping cost based on selected delivery option
+            var shipping = 0;
+            var deliveryOptions = document.querySelectorAll('input[name="delivery"]');
+            deliveryOptions.forEach(function(option) {
+                if (option.checked && option.id === 'ship') {
+                    shipping = 15;
+                }
+            });
+            document.getElementById('shipping').value = shipping.toFixed(2) + ' €';
+    
+            //Calculating Grand Total
+            var grandTotal = subtotal + taxes + shipping;
+            document.getElementById('grand-total').value = grandTotal.toFixed(2) + ' €';
+        }
+    
+        var deliveryOptions = document.querySelectorAll('input[name="delivery"]');
+        deliveryOptions.forEach(function(option) {
+            option.addEventListener('change', function() {
+                calculateTotals();
+            });
+        });
+    
+        calculateTotals();
+
+        //Setting the Promise Date based on the Order Date
+        function setPromiseDate() {
+            var orderDateInput = document.getElementById('order-date');
+            var promiseDateInput = document.getElementById('promise-date');
+
+            var orderDateValue = orderDateInput.value;
+            if (orderDateValue) {
+                var orderDateParts = orderDateValue.split('-');
+                var orderDate = new Date(orderDateParts[0], orderDateParts[1] - 1, orderDateParts[2]);
+
+                var promiseDate = new Date(orderDate);
+                promiseDate.setDate(orderDate.getDate() + 5);
+
+                var year = promiseDate.getFullYear();
+                var month = ('0' + (promiseDate.getMonth() + 1)).slice(-2);
+                var day = ('0' + promiseDate.getDate()).slice(-2);
+                var promiseDateValue = `${year}-${month}-${day}`;
+
+                promiseDateInput.value = promiseDateValue;
+            } else {
+                promiseDateInput.value = '';
+            }
+        }
+
+        //Initializing dates on page loading
+        function initializeDates() {
+            var orderDateInput = document.getElementById('order-date');
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = ('0' + (today.getMonth() + 1)).slice(-2);
+            var day = ('0' + today.getDate()).slice(-2);
+            var todayValue = `${year}-${month}-${day}`;
+
+            orderDateInput.value = todayValue;
+
+            setPromiseDate();
+        }
+
+        document.getElementById('order-date').addEventListener('change', setPromiseDate);
+
+        document.addEventListener('DOMContentLoaded', initializeDates);
+
+        document.querySelector('form').addEventListener('submit', function(event) {
+            var userConfirmed = confirm('Are you sure you want to submit the order?\nIf yes, click "OK" and check your email for the tracking details.');
+
+            if (!userConfirmed) {
+                event.preventDefault();
+            }
+});
+
+    </script>    
+</body>
+</html>
